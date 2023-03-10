@@ -14,11 +14,6 @@
     }
   },
   "services": {
-    "aws": {
-      "cloudwatch": {
-        "logStreamName": "widget/connector/development/log"
-      }
-    },
     "intuit": {
       "api": {
         "url": "sandbox-quickbooks.api.intuit.com"

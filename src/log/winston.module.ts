@@ -1,7 +1,5 @@
 import { WinstonModule } from 'nest-winston';
 import winston from 'winston';
-import WinstonCloudWatch from 'winston-cloudwatch';
-import config from 'src/config';
 import WinstonDailyRotateFile from 'winston-daily-rotate-file';
 
 export const winstonModule = WinstonModule.forRoot({
@@ -23,16 +21,6 @@ export const winstonModule = WinstonModule.forRoot({
     new winston.transports.File({
       filename: 'logs/error.log',
       level: 'error'
-    }),
-    new WinstonCloudWatch({
-      awsAccessKeyId: config.get('services.aws.cloudwatch.awsAccessKeyId'),
-      awsRegion: config.get('services.aws.cloudwatch.awsRegion'),
-      awsSecretKey: config.get('services.aws.cloudwatch.awsSecretKey'),
-      logGroupName: config.get('services.aws.cloudwatch.logGroupName'),
-      retentionInDays: config.get('services.aws.cloudwatch.retentionInDays'),
-      logStreamName: config.get('services.aws.cloudwatch.logStreamName'),
-      jsonMessage: true,
-      level: 'debug'
     }),
     new WinstonDailyRotateFile({
       dirname: 'logs/debug',
